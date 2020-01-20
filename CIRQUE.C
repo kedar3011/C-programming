@@ -1,0 +1,87 @@
+#include<conio.h>
+#include<stdio.h>
+
+int q[5];
+int front=-1,rear=-1;
+int val;
+
+void enqueue()
+{
+	//int val;
+	scanf("%d",&val);
+	if(front==-1)
+	{
+		front=0;
+		rear=0;
+		q[rear]=val;
+	}
+	else if(front==(rear+1)%5)
+	{
+		printf("Queue full");
+	}
+	else
+	{
+		rear=(rear+1)%5;
+		q[rear]=val;
+	}
+}
+
+void dequeue()
+{
+	if(front==-1)
+	{
+	printf("Queue is empty");
+	}
+	else if(front==rear)
+	{val=q[front];
+	front=-1;
+	rear=-1;
+	printf("%d",val);
+	}
+	else
+	{val=q[front];
+	front=(front+1)%5;
+	printf("%d",val);
+	}
+}
+void display()
+{
+	int i;
+	if(front==-1)
+	printf("Queue is empty");
+	else if(front<=rear)
+	{
+	for(i=front;i<=rear;i++)
+	{printf("\n %d",q[i]);
+	}
+	}
+	else{
+	i=front;
+	printf("\n %d",q[front]);
+	while(i!=rear)
+	{
+	i=(i+1)%5;
+	printf("\n %d",q[i]);
+	}
+	}
+}
+void main()
+{
+	int choice=0;
+	clrscr();
+	while(choice!=4)
+       {printf("\nNormal Queue \n1.Queue \n2.Dequeue \n3Display \n4.Exit");
+       scanf("%d",&choice);
+       switch(choice)
+       {
+		case 1:printf("Enter value");
+		       enqueue();
+		       break;
+		case 2:dequeue();
+			break;
+		case 3:display();
+			break;
+       }
+       }
+       getch();
+}
